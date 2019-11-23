@@ -1,0 +1,84 @@
+:root {
+  --primary-color: #CDF3D0;
+  --secondary-color: #73E678;
+  --hero-color: #05A10D;
+}
+
+.text-primary {
+  color: var(--primary-color);
+}
+
+.text-secondary {
+  color: var(--secondary-color);
+}
+
+.text-hero {
+  color: var(--hero-color);
+}
+
+.ttc {
+  text-transform: capitalize;
+}
+
+.ttu {
+  text-transform: uppercase;
+}
+
+.btn-small {
+  background: var(--hero-color);
+}
+
+.btn-small:hover {
+  background: var(--secondary-color);
+}
+
+nav {
+  background: var(--primary-color);
+  border-bottom: 1px solid var(--secondary-color);
+}
+
+.menu-icon {
+  cursor: pointer;
+}
+
+nav a {
+  color: var(--hero-color);
+}
+
+nav sidenav-trigger {
+  margin: 0;
+}
+
+.entries {
+  margin-top: 1.5rem;
+}
+
+.entry {
+  display: grid;
+  grid-template-columns: 2fr 6fr 1fr;
+  grid-template-areas: "image details delete";
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgba(100, 100, 100, 0.2);
+  border-radius: 6px;
+}
+
+.entry img {
+  grid-area: "image";
+  max-width: 100px;
+}
+
+.entry-details {
+  grid-area: "details";
+  margin-top: 0.5rem;
+}
+
+.entry-delete {
+  grid-area: "delete";
+  align-self: flex-end;
+  justify-self: flex-end;
+  cursor: pointer;
+}
+
+.add-btn {
+  margin-bottom: 2rem;
+}
