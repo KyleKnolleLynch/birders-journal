@@ -1,7 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Calistoga&display=swap');
+
 :root {
   --primary-color: #CDF3D0;
   --secondary-color: #73E678;
   --hero-color: #05A10D;
+}
+
+body, button {
+  font-family: 'Calistoga', cursive;
 }
 
 .text-primary {
