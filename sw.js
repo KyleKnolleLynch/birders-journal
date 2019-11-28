@@ -8,9 +8,10 @@ const assets = [
   '/js/materialize.min.js',
   '/css/style.css',
   '/css/materialize.min.css',
-  '/img/logo.jpg',
+  '/img/logo-bird.png',
   'https://fonts.googleapis.com/icon?family=Material+Icons',
   'https://fonts.gstatic.com/s/materialicons/v48/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2',
+  'https://fonts.googleapis.com/css?family=Calistoga&display=swap',
   'https://fonts.gstatic.com/s/calistoga/v1/6NUU8F2OJg6MeR7l4e0fvMwB8dQ.woff2',
   'https://fonts.gstatic.com/s/calistoga/v1/6NUU8F2OJg6MeR7l4e0fs8wB.woff2',
   '/pages/notFound.html'
@@ -54,25 +55,25 @@ self.addEventListener('activate', evt => {
 
 //  fetch event
 self.addEventListener('fetch', evt => {
-  evt.respondWith(
-    caches
-      .match(evt.request)
-      .then(cacheRes => {
-        return (
-          cacheRes ||
-          fetch(evt.request).then(fetchRes => {
-            return caches.open(dynamicCache).then(cache => {
-              cache.put(evt.request.url, fetchRes.clone());
-              limitCacheSize(dynamicCache, 20);
-              return fetchRes;
-            });
-          })
-        );
-      })
-      .catch(() => {
-        if (evt.request.url.includes('.html')) {
-          return caches.match('/pages/notFound.html');
-        }
-      })
-  );
+  // evt.respondWith(
+  //   caches
+  //     .match(evt.request)
+  //     .then(cacheRes => {
+  //       return (
+  //         cacheRes ||
+  //         fetch(evt.request).then(fetchRes => {
+  //           return caches.open(dynamicCache).then(cache => {
+  //             cache.put(evt.request.url, fetchRes.clone());
+  //             limitCacheSize(dynamicCache, 20);
+  //             return fetchRes;
+  //           });
+  //         })
+  //       );
+  //     })
+  //     .catch(() => {
+  //       if (evt.request.url.includes('.html')) {
+  //         return caches.match('/pages/notFound.html');
+  //       }
+  //     })
+  // );
 });

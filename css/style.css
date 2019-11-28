@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Calistoga&display=swap');
 
 :root {
-  --primary-color: #CDF3D0;
-  --secondary-color: #73E678;
-  --hero-color: #05A10D;
+  --primary-color: #cdf3d0;
+  --secondary-color: #73e678;
+  --hero-color: #05a10d;
 }
 
-body, button {
+body,
+button {
   font-family: 'Calistoga', cursive;
 }
 
@@ -62,24 +63,28 @@ nav sidenav-trigger {
 .entry {
   display: grid;
   grid-template-columns: 2fr 6fr 1fr;
-  grid-template-areas: "image details delete";
+  grid-template-areas: 'image details delete';
+  grid-gap: 1rem;
   padding: 1rem;
   box-shadow: 0 1px 3px rgba(100, 100, 100, 0.2);
   border-radius: 6px;
 }
 
 .entry img {
-  grid-area: "image";
-  max-width: 100px;
+  grid-area: 'image';
+  width: 75%;
+  max-width: 120px;
+  justify-self: center;
+  align-self: center;
 }
 
 .entry-details {
-  grid-area: "details";
+  grid-area: 'details';
   margin-top: 0.5rem;
 }
 
 .entry-delete {
-  grid-area: "delete";
+  grid-area: 'delete';
   align-self: flex-end;
   justify-self: flex-end;
   cursor: pointer;
