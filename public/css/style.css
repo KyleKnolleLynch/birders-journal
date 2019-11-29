@@ -11,14 +11,6 @@ button {
   font-family: 'Calistoga', cursive;
 }
 
-.text-primary {
-  color: var(--primary-color);
-}
-
-.text-secondary {
-  color: var(--secondary-color);
-}
-
 .text-hero {
   color: var(--hero-color);
 }
@@ -36,6 +28,10 @@ button {
 }
 
 .btn-small:hover {
+  background: var(--secondary-color);
+}
+
+.btn-small:focus {
   background: var(--secondary-color);
 }
 
@@ -92,4 +88,20 @@ nav sidenav-trigger {
 
 .add-btn {
   margin-bottom: 2rem;
+}
+
+.form-text {
+  font-size: 0.9rem;
+  font-family: initial;
+  font-weight: bold;
+}
+
+#notes::-webkit-input-placeholder {
+  font-style: italic;
+}
+#notes:-moz-placeholder {
+  font-style: italic;  
+}
+#notes::-moz-placeholder {
+  font-style: italic;  
 }

@@ -55,25 +55,27 @@ self.addEventListener('activate', evt => {
 
 //  fetch event
 self.addEventListener('fetch', evt => {
-  // evt.respondWith(
-  //   caches
-  //     .match(evt.request)
-  //     .then(cacheRes => {
-  //       return (
-  //         cacheRes ||
-  //         fetch(evt.request).then(fetchRes => {
-  //           return caches.open(dynamicCache).then(cache => {
-  //             cache.put(evt.request.url, fetchRes.clone());
-  //             limitCacheSize(dynamicCache, 20);
-  //             return fetchRes;
-  //           });
-  //         })
-  //       );
-  //     })
-  //     .catch(() => {
-  //       if (evt.request.url.includes('.html')) {
-  //         return caches.match('/pages/notFound.html');
-  //       }
-  //     })
-  // );
+  if (evt.request.url.indexOf('firestore.googleapis.com') === -1) {
+    evt.respondWith(
+      caches
+        .match(evt.request)
+        .then(cacheRes => {
+          return (
+            cacheRes ||
+            fetch(evt.request).then(fetchRes => {
+              return caches.open(dynamicCache).then(cache => {
+                cache.put(evt.request.url, fetchRes.clone());
+                limitCacheSize(dynamicCache, 20);
+                return fetchRes;
+              });
+            })
+          );
+        })
+        .catch(() => {
+          if (evt.request.url.includes('.html')) {
+            return caches.match('/pages/notFound.html');
+          }
+        })
+    );
+  }
 });
