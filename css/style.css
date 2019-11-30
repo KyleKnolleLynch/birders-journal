@@ -96,12 +96,70 @@ nav sidenav-trigger {
   font-weight: bold;
 }
 
+.input-field input:focus + label {
+  color: var(--hero-color) !important;
+}
+
+.input-field input:focus {
+  border-bottom: 1px solid var(--hero-color) !important;
+  box-shadow: 0 1px 0 0 var(--hero-color) !important; 
+}
+
+.datepicker-date-display {
+  background-color: var(--hero-color);
+}
+
+.datepicker-day-button:hover {
+  background: var(--hero-color);
+}
+
+.datepicker-table td.is-today {
+  color: var(--secondary-color);
+}
+
+.datepicker-table td.is-selected {
+  background: var(--hero-color);
+}
+
+.datepicker-day-button:focus {
+  background: var(--hero-color);
+}
+
+.datepicker-cancel,
+.datepicker-clear,
+.datepicker-today,
+.datepicker-done {
+  color: var(--hero-color);
+}
+
+.timepicker-digital-display {
+  background: var(--hero-color);
+}
+
+.timepicker-close,
+.timepicker-clear {
+  color: var(--hero-color);
+}
+
+.timepicker-tick:hover {
+  background: var(--hero-color) !important;
+}
+.timepicker-canvas line {
+  stroke: var(--hero-color) !important;
+}
+.timepicker-canvas-bearing {
+  fill: var(--hero-color) !important;
+}
+.timepicker-canvas-bg {
+  fill: var(--hero-color) !important;
+}
+
 #notes::-webkit-input-placeholder {
   font-style: italic;
 }
 #notes:-moz-placeholder {
-  font-style: italic;  
+  font-style: italic;
 }
 #notes::-moz-placeholder {
-  font-style: italic;  
+  font-style: italic;
 }

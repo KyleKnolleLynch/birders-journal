@@ -6,10 +6,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const forms = document.querySelectorAll('.side-form');
   M.Sidenav.init(forms, { edge: 'left' });
+
+  const date = document.querySelectorAll('.datepicker');
+  M.Datepicker.init(date, { container: 'body', showClearBtn: true });
+
+  const time = document.querySelectorAll('.timepicker');
+  M.Timepicker.init(time, { container: 'body', showClearBtn: true });
 });
 
 //  render entry data
 const renderEntry = (data, id) => {
+  // const formatDate = new Date(data.date).toLocaleDateString();
+
   const htmlTemplate = `
   <div class="card-panel entry white row" data-id="${id}">
   <img src="/img/logo-bird.png" alt="logo-bird" />
@@ -30,7 +38,7 @@ const renderEntry = (data, id) => {
       data.conditions
     }</div>
     <div class="entry-notes"><span class="black-text form-text">Notes:</span>&nbsp; ${
-      data.notes === undefined ? "" : data.notes
+      data.notes === undefined ? '' : data.notes
     }</div>
   </div>
   <div class="entry-delete">
@@ -40,7 +48,6 @@ const renderEntry = (data, id) => {
   `;
 
   entries.insertAdjacentHTML('afterbegin', htmlTemplate);
-  // entries.innerHTML += htmlTemplate;
 };
 
 //  remove entry from dom
@@ -49,4 +56,8 @@ const removeEntry = id => {
   entry.remove();
 };
 
+// const title = document.querySelector('.entry-title');
 
+// entries.innerHTML === null
+//   ? (title.textContent = 'Click Below To Start An Entry')
+//   : (title.textContent = 'Entries');
