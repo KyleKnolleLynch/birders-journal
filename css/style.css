@@ -1,9 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Calistoga&display=swap');
 
 :root {
-  --primary-color: #cdf3d0;
+  /* --primary-color: #cdf3d0;
   --secondary-color: #73e678;
-  --hero-color: #05a10d;
+  --hero-color: #05a10d; */
+
+  --primary-color: #f2e7ac;
+  --secondary-color: #a9bf99;
+  --hero-color: #273859;
+  --hover-color: #405379;
 }
 
 body,
@@ -23,16 +28,21 @@ button {
   text-transform: uppercase;
 }
 
+.btn,
 .btn-small {
   background: var(--hero-color);
 }
 
+.btn:hover,
 .btn-small:hover {
-  background: var(--secondary-color);
+  /* background: var(--secondary-color); */
+  background: var(--hover-color);
 }
 
+.btn:focus,
 .btn-small:focus {
-  background: var(--secondary-color);
+  /* background: var(--secondary-color); */
+  background: var(--hover-color);
 }
 
 nav {
@@ -44,12 +54,12 @@ nav {
   cursor: pointer;
 }
 
-nav a {
-  color: var(--hero-color);
-}
-
 nav sidenav-trigger {
   margin: 0;
+}
+
+.sidenav-title {
+  font-size: 1.1rem;
 }
 
 .entries {
@@ -77,6 +87,7 @@ nav sidenav-trigger {
 .entry-details {
   grid-area: 'details';
   margin-top: 0.5rem;
+  word-break: break-all;
 }
 
 .entry-delete {
@@ -84,10 +95,6 @@ nav sidenav-trigger {
   align-self: flex-end;
   justify-self: flex-end;
   cursor: pointer;
-}
-
-.add-btn {
-  margin-bottom: 2rem;
 }
 
 .form-text {
@@ -102,7 +109,7 @@ nav sidenav-trigger {
 
 .input-field input:focus {
   border-bottom: 1px solid var(--hero-color) !important;
-  box-shadow: 0 1px 0 0 var(--hero-color) !important; 
+  box-shadow: 0 1px 0 0 var(--hero-color) !important;
 }
 
 .datepicker-date-display {
@@ -110,7 +117,8 @@ nav sidenav-trigger {
 }
 
 .datepicker-day-button:hover {
-  background: var(--hero-color);
+  background: var(--secondary-color);
+  color: #fff;
 }
 
 .datepicker-table td.is-today {
@@ -118,11 +126,12 @@ nav sidenav-trigger {
 }
 
 .datepicker-table td.is-selected {
-  background: var(--hero-color);
+  background: var(--secondary-color);
+  color: #fff;
 }
 
 .datepicker-day-button:focus {
-  background: var(--hero-color);
+  background: var(--secondary-color);
 }
 
 .datepicker-cancel,
@@ -142,16 +151,25 @@ nav sidenav-trigger {
 }
 
 .timepicker-tick:hover {
-  background: var(--hero-color) !important;
+  background: var(--hero-color);
 }
+
 .timepicker-canvas line {
-  stroke: var(--hero-color) !important;
+  stroke: var(--hero-color);
 }
 .timepicker-canvas-bearing {
-  fill: var(--hero-color) !important;
+  fill: var(--hero-color);
 }
 .timepicker-canvas-bg {
-  fill: var(--hero-color) !important;
+  fill: var(--hero-color);
+}
+
+.timepicker-plate {
+  background: var(--secondary-color);
+}
+
+.timepicker-tick {
+  color: #fff;
 }
 
 #notes::-webkit-input-placeholder {

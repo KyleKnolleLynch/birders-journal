@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const forms = document.querySelectorAll('.side-form');
   M.Sidenav.init(forms, { edge: 'left' });
 
+  const modals = document.querySelectorAll('.modal');
+  M.Modal.init(modals);
+
   const date = document.querySelectorAll('.datepicker');
   M.Datepicker.init(date, { container: 'body', showClearBtn: true });
 
@@ -16,8 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //  render entry data
 const renderEntry = (data, id) => {
-  // const formatDate = new Date(data.date).toLocaleDateString();
-
   const htmlTemplate = `
   <div class="card-panel entry white row" data-id="${id}">
   <img src="/img/logo-bird.png" alt="logo-bird" />
