@@ -1,3 +1,28 @@
+//  listen for auth state change
+auth.onAuthStateChanged(user => {
+  if (user) {
+    //  real-time listener
+    db.collection('entries').onSnapshot(snapshot => {
+      loggedInUI(user);
+      // console.log(snapshot.docChanges());
+      snapshot.docChanges().forEach(change => {
+        // console.log(change, change.doc.data(), change.doc.id);
+        if (change.type === 'added') {
+          renderEntry(change.doc.data(), change.doc.id);
+        }
+        if (change.type === 'removed') {
+          removeEntry(change.doc.id);
+        }
+      });
+    }, err => {
+      console.log(err.message);
+    });
+  } else {
+    loggedInUI();
+    renderEntry();
+  }
+});
+
 //  signup user
 const signupForm = document.getElementById('signup-form');
 signupForm.addEventListener('submit', e => {
@@ -8,8 +33,12 @@ signupForm.addEventListener('submit', e => {
   auth
     .createUserWithEmailAndPassword(email, password)
     .then(cred => {
-      console.log(cred.user);
-
+      return db
+        .collection('users')
+        .doc(cred.user.uid)
+        .set(entry);
+    })
+    .then(() => {
       const modal = document.getElementById('modal-signup');
       M.Modal.getInstance(modal).close();
       signupForm.reset();
@@ -17,20 +46,14 @@ signupForm.addEventListener('submit', e => {
     .catch(err => {
       M.toast({ html: err });
     });
+  entryTitle.textContent = 'Add Entries Below';
 });
 
 //  logout user
 const logout = document.querySelector('.logout');
 logout.addEventListener('click', e => {
   e.preventDefault();
-  auth
-    .signOut()
-    .then(() => {
-      console.log('user signed out');
-    })
-    .catch(err => {
-      M.toast({ html: err });
-    });
+  auth.signOut();
 });
 
 //  login user
@@ -43,8 +66,6 @@ loginForm.addEventListener('submit', e => {
   auth
     .signInWithEmailAndPassword(email, password)
     .then(cred => {
-      console.log(cred.user);
-
       const modal = document.getElementById('modal-login');
       M.Modal.getInstance(modal).close();
       loginForm.reset();
@@ -52,4 +73,9 @@ loginForm.addEventListener('submit', e => {
     .catch(err => {
       M.toast({ html: err });
     });
+  if (entries.length) {
+    entryTitle.textContent = 'Entries';
+  } else {
+    entryTitle.textContent = 'Add Entries Below';
+  }
 });

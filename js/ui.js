@@ -1,4 +1,7 @@
 const entries = document.querySelector('.entries');
+const entryTitle = document.querySelector('.entry-title');
+const loggedInLinks = document.querySelectorAll('.logged-in');
+const loggedOutLinks = document.querySelectorAll('.logged-out');
 
 document.addEventListener('DOMContentLoaded', () => {
   const menus = document.querySelectorAll('.side-menu');
@@ -17,9 +20,32 @@ document.addEventListener('DOMContentLoaded', () => {
   M.Timepicker.init(time, { container: 'body', showClearBtn: true });
 });
 
+//  conditional links
+const loggedInUI = user => {
+  const accDetails = document.querySelector('.account-details');
+
+  if (user) {
+    const creation = new Date(user.metadata.creationTime).toLocaleDateString();
+    const lastSign = new Date(user.metadata.lastSignInTime).toLocaleString();
+
+    loggedInLinks.forEach(link => (link.style.display = 'block'));
+    loggedOutLinks.forEach(link => (link.style.display = 'none'));
+    accDetails.innerHTML = `
+    <h5>Logged in as:&nbsp;${user.email}</h5>
+    <h6>Date joined:&nbsp;${creation}</h6>
+    <h6>Last signed in:&nbsp;${lastSign}</h6>
+    `;
+  } else {
+    loggedInLinks.forEach(link => (link.style.display = 'none'));
+    loggedOutLinks.forEach(link => (link.style.display = 'block'));
+    accDetails.innerHTML = '';
+  }
+};
+
 //  render entry data
 const renderEntry = (data, id) => {
-  const htmlTemplate = `
+  if (data) {
+    const htmlTemplate = `
   <div class="card-panel entry white row" data-id="${id}">
   <img src="/img/logo-bird.png" alt="logo-bird" />
   <div class="entry-details">
@@ -48,7 +74,12 @@ const renderEntry = (data, id) => {
 </div>
   `;
 
-  entries.insertAdjacentHTML('afterbegin', htmlTemplate);
+    entries.insertAdjacentHTML('afterbegin', htmlTemplate);
+    entryTitle.textContent = 'Entries';
+  } else {
+    entries.innerHTML = '';
+    entryTitle.textContent = 'Login to View Entries';
+  }
 };
 
 //  remove entry from dom
@@ -56,9 +87,3 @@ const removeEntry = id => {
   const entry = document.querySelector(`.entry[data-id=${id}]`);
   entry.remove();
 };
-
-// const title = document.querySelector('.entry-title');
-
-// entries.innerHTML === null
-//   ? (title.textContent = 'Click Below To Start An Entry')
-//   : (title.textContent = 'Entries');

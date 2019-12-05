@@ -9,19 +9,7 @@ db.enablePersistence().catch(err => {
   }
 });
 
-//  real-time listener
-db.collection('entries').onSnapshot(snapshot => {
-  // console.log(snapshot.docChanges());
-  snapshot.docChanges().forEach(change => {
-    // console.log(change, change.doc.data(), change.doc.id);
-    if (change.type === 'added') {
-      renderEntry(change.doc.data(), change.doc.id);
-    }
-    if (change.type === 'removed') {
-      removeEntry(change.doc.id);
-    }
-  });
-});
+//
 
 //  add entry
 const form = document.querySelector('.add-entry');
@@ -37,7 +25,11 @@ form.addEventListener('submit', e => {
   };
   db.collection('entries')
     .add(entry)
-    .catch(err => console.log(err));
+    .then(() => {
+      const formDiv = document.querySelector('.side-form');
+      M.Sidenav.getInstance(formDiv).close();
+    })
+    .catch(err => console.log(err.message));
 
   form.species.value = '';
   form.location.value = '';
@@ -46,6 +38,7 @@ form.addEventListener('submit', e => {
   form.conditions.value = '';
   form.notes.value = '';
 });
+
 
 //  delete entry
 const entryContainer = document.querySelector('.entries');
