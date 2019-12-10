@@ -2,6 +2,7 @@ const entries = document.querySelector('.entries');
 const entryTitle = document.querySelector('.entry-title');
 const loggedInLinks = document.querySelectorAll('.logged-in');
 const loggedOutLinks = document.querySelectorAll('.logged-out');
+const adminItems = document.querySelector('.admin');
 
 document.addEventListener('DOMContentLoaded', () => {
   const menus = document.querySelectorAll('.side-menu');
@@ -25,6 +26,9 @@ const loggedInUI = user => {
   const accDetails = document.querySelector('.account-details');
 
   if (user) {
+    if(user.admin) {
+      adminItems.style.display = 'block';
+    }
     const creation = new Date(user.metadata.creationTime).toLocaleDateString();
     const lastSign = new Date(user.metadata.lastSignInTime).toLocaleString();
 
@@ -42,10 +46,12 @@ const loggedInUI = user => {
     <div>
     <h6>Date joined:&nbsp;${creation}</h6>
     <h6>Last signed in:&nbsp;${lastSign}</h6>
+    <h6 class='pink-text'>${user.admin ? 'Admin' : ''}</h6>
     </div>
     `;
       });
   } else {
+    adminItems.style.display = 'none';
     loggedInLinks.forEach(link => (link.style.display = 'none'));
     loggedOutLinks.forEach(link => (link.style.display = 'block'));
     accDetails.innerHTML = '';

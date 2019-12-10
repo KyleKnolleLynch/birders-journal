@@ -24,7 +24,7 @@ form.addEventListener('submit', e => {
     conditions: form.conditions.value,
     notes: form.notes.value,
   };
-  db.collection('users')
+  db.collection('entries')
     .add(entry)
     .then(() => {
       const formDiv = document.querySelector('.side-form');

@@ -7,6 +7,7 @@ adminForm.addEventListener('submit', e => {
   addAdminRole({ email: adminEmail }).then(result => {
     console.log(result);
   });
+  adminForm.reset();
 });
 
 //  listen for auth state change
@@ -63,9 +64,10 @@ signupForm.addEventListener('submit', e => {
       const modal = document.getElementById('modal-signup');
       M.Modal.getInstance(modal).close();
       signupForm.reset();
+      signupForm.querySelector('.error').innerHTML = '';
     })
     .catch(err => {
-      M.toast({ html: err });
+     signupForm.querySelector('.error').innerHTML = err.message;
     });
   entryTitle.textContent = 'Add Entries Below';
 });
@@ -90,9 +92,10 @@ loginForm.addEventListener('submit', e => {
       const modal = document.getElementById('modal-login');
       M.Modal.getInstance(modal).close();
       loginForm.reset();
+      loginForm.querySelector('.error').innerHTML = '';
     })
     .catch(err => {
-      M.toast({ html: err });
+      loginForm.querySelector('.error').innerHTML = err.message;
     });
   if (entries.length) {
     entryTitle.textContent = 'Entries';
