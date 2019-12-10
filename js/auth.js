@@ -1,22 +1,41 @@
+//  add admin cloud funciton
+const adminForm = document.querySelector('.admin-actions');
+adminForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const adminEmail = document.getElementById('admin-email').value;
+  const addAdminRole = functions.httpsCallable('addAdminRole');
+  addAdminRole({ email: adminEmail }).then(result => {
+    console.log(result);
+  });
+});
+
 //  listen for auth state change
 auth.onAuthStateChanged(user => {
   if (user) {
-    //  real-time listener
-    db.collection('entries').onSnapshot(snapshot => {
+    user.getIdTokenResult().then(idTokenResult => {
+      user.admin = idTokenResult.claims.admin;
       loggedInUI(user);
-      // console.log(snapshot.docChanges());
-      snapshot.docChanges().forEach(change => {
-        // console.log(change, change.doc.data(), change.doc.id);
-        if (change.type === 'added') {
-          renderEntry(change.doc.data(), change.doc.id);
-        }
-        if (change.type === 'removed') {
-          removeEntry(change.doc.id);
-        }
-      });
-    }, err => {
-      console.log(err.message);
     });
+
+    //  real-time listener
+    db.collection('entries').onSnapshot(
+      snapshot => {
+       
+        // console.log(snapshot.docChanges());
+        snapshot.docChanges().forEach(change => {
+          // console.log(change, change.doc.data(), change.doc.id);
+          if (change.type === 'added') {
+            renderEntry(change.doc.data(), change.doc.id);
+          }
+          if (change.type === 'removed') {
+            removeEntry(change.doc.id);
+          }
+        });
+      },
+      err => {
+        console.log(err.message);
+      }
+    );
   } else {
     loggedInUI();
     renderEntry();
@@ -36,7 +55,9 @@ signupForm.addEventListener('submit', e => {
       return db
         .collection('users')
         .doc(cred.user.uid)
-        .set(entry);
+        .set({
+          bio: signupForm['signup-bio'].value
+        });
     })
     .then(() => {
       const modal = document.getElementById('modal-signup');

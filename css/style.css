@@ -107,7 +107,8 @@ nav sidenav-trigger {
   color: var(--hero-color) !important;
 }
 
-.input-field input:focus {
+.input-field input:focus,
+input[type='email']:focus {
   border-bottom: 1px solid var(--hero-color) !important;
   box-shadow: 0 1px 0 0 var(--hero-color) !important;
 }

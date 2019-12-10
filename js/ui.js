@@ -30,11 +30,21 @@ const loggedInUI = user => {
 
     loggedInLinks.forEach(link => (link.style.display = 'block'));
     loggedOutLinks.forEach(link => (link.style.display = 'none'));
-    accDetails.innerHTML = `
+    db.collection('users')
+      .doc(user.uid)
+      .get()
+      .then(doc => {
+        accDetails.innerHTML = `
+    <div>
     <h5>Logged in as:&nbsp;${user.email}</h5>
+    <h6>Bio:&nbsp;${doc.data().bio}</h6>
+    </div>
+    <div>
     <h6>Date joined:&nbsp;${creation}</h6>
     <h6>Last signed in:&nbsp;${lastSign}</h6>
+    </div>
     `;
+      });
   } else {
     loggedInLinks.forEach(link => (link.style.display = 'none'));
     loggedOutLinks.forEach(link => (link.style.display = 'block'));

@@ -15,15 +15,16 @@ db.enablePersistence().catch(err => {
 const form = document.querySelector('.add-entry');
 form.addEventListener('submit', e => {
   e.preventDefault();
+  
   const entry = {
     species: form.species.value,
     location: form.location.value,
     date: form.date.value,
     time: form.time.value,
     conditions: form.conditions.value,
-    notes: form.notes.value
+    notes: form.notes.value,
   };
-  db.collection('entries')
+  db.collection('users')
     .add(entry)
     .then(() => {
       const formDiv = document.querySelector('.side-form');
