@@ -3,8 +3,8 @@
   "short_name": "Birder's Journal",
   "start_url": "/index.html",
   "display": "standalone",
-  "background_color": "#CDF3D0",
-  "theme_color": "#B2E4B6",
+  "background_color": "#f2e7ac",
+  "theme_color": "#273859",
   "orientation": "portrait-primary",
   "icons": [
     {
