@@ -1,10 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Calistoga&display=swap');
 
 :root {
-  /* --primary-color: #cdf3d0;
-  --secondary-color: #73e678;
-  --hero-color: #05a10d; */
-
   --primary-color: #f2e7ac;
   --secondary-color: #867649;
   --hero-color: #273859;
@@ -35,13 +31,11 @@ button {
 
 .btn:hover,
 .btn-small:hover {
-  /* background: var(--secondary-color); */
   background: var(--hover-color);
 }
 
 .btn:focus,
 .btn-small:focus {
-  /* background: var(--secondary-color); */
   background: var(--hover-color);
 }
 

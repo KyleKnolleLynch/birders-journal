@@ -1,5 +1,5 @@
-const staticCache = 'site-static-v2';
-const dynamicCache = 'site-dynamic-v2';
+const staticCache = 'site-static-v1';
+const dynamicCache = 'site-dynamic-v1';
 const assets = [
   '/',
   '/index.html',
@@ -9,7 +9,7 @@ const assets = [
   '/css/style.css',
   '/css/materialize.min.css',
   '/img/logo-bird.png',
-  'https://fonts.googleapis.com/icon?family=Material+Icons',
+  'https://fonts.googleapis.com/icon?family=Material+Icons&display=swap',
   'https://fonts.gstatic.com/s/materialicons/v48/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2',
   'https://fonts.googleapis.com/css?family=Calistoga&display=swap',
   'https://fonts.gstatic.com/s/calistoga/v1/6NUU8F2OJg6MeR7l4e0fvMwB8dQ.woff2',
