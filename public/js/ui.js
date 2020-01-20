@@ -94,7 +94,7 @@ const renderEntry = (data, id) => {
     entryTitle.textContent = 'Entries';
   } else {
     entries.innerHTML = '';
-    entryTitle.textContent = 'Login to View Entries';
+    entryTitle.textContent = 'Signup/Login to View Entries';
   }
 };
 
